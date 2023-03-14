@@ -19,11 +19,11 @@ namespace is_calisma
             InitializeComponent();
         }
 
- 
+
         // İŞLEVSELLİK-1 KODU
-        private void BtnCalculate_Click(object sender, EventArgs e) 
+        private void BtnCalculate_Click(object sender, EventArgs e)
         {
-            double num1, num2, num3, sum; 
+            double num1, num2, num3, sum;
 
             if (double.TryParse(txtnum1.Text, out num1) && double.TryParse(txtnum2.Text, out num2) && double.TryParse(txtnum3.Text, out num3)) // girilen değerin sayı olup olmadığı kontrol ediliyor..
             {
@@ -110,7 +110,7 @@ namespace is_calisma
                 }
             }
         }
-        
+
         private void BtnCalculate_MouseHover(object sender, EventArgs e)
         {
             btnCalculate.BackColor = Color.Bisque;
@@ -121,27 +121,41 @@ namespace is_calisma
             btnCalculate.BackColor = Color.Transparent;
         }
         // İŞLEVSELLİK-5 KODU
+
+        public static int GetNthFibonacci(int n)
+        {
+            if ((n == 0) || (n == 1))
+            {
+                return n;
+            }
+            else
+                return GetNthFibonacci(n - 1) + GetNthFibonacci(n - 2);
+        }
+
         private void Btnfibo_Click(object sender, EventArgs e)
         {
             int sayi = int.Parse(txtfib.Text);
-            int a = 0, b = 1, c;
-            string fibsayilar = a.ToString() + " " + b.ToString() + " ";
-
-            for (int i = 2; i < sayi; i++)
+            string fibsayilar = "0";
+            if (sayi <= 0)
             {
-                c = a + b;
-                fibsayilar = c.ToString() + " ";
-                a = b;
-                b = c;
+                MessageBox.Show("EN AZ 1 GİREBİLİRSİNİZ !");
+            }
+            else if (sayi == 1)
+            {
+                fibsayilar = "0";
+            }
+            else
+            {
+                fibsayilar = GetNthFibonacci(sayi - 1).ToString();
             }
 
             txtfib2.Text = fibsayilar;
         }
-        
+
         // İŞLEVSELLİK-3 KODU
         private void Btntablo_Click(object sender, EventArgs e)
-        {  
-            
+        {
+
             var n = int.Parse(txtcarpim.Text);
             if (n <= 15)
             {
@@ -171,12 +185,12 @@ namespace is_calisma
                 }
                 catch (Exception ex)
                 {
-                    // Hata durumunda yapılacak işlemler burada yer alabilir
+                    MessageBox.Show("NEGATİF DEĞER YAZILAMAZ");
                 }
             }
             else
             {
-                MessageBox.Show("EN FAZLA 15'E KADAR RAKAM GİREBİLİRSİNİZ..");
+                MessageBox.Show("EN FAZLA 15'E KADAR SAYI GİREBİLİRSİNİZ !");
             }
 
             /*  datagriedwievda istemezseniz richtexbox kodu da mevcuttur..
